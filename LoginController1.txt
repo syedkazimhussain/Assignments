@@ -1,0 +1,31 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using GoogleAuthentication.Services;
+using System;
+using System.Linq;
+using System.Web;
+
+using System.Collections.Generic;
+namespace WebApplication3.Controllers
+    
+{
+    public class LoginController1 : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public async  Task<IActionResult> GoogleLoginCallback(string code)
+        {
+            var clientId = "632718712016-h63qjdikufc3gifiefd309q8gertgd78.apps.googleusercontent.com\r\n";
+            var url = "https://localhost:7236/Login/GoogleLoginCallback";
+            var clientsecret = "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\r\n";
+            var token=GoogleAuth.GetAuthAccessToken(code, clientsecret,clientId,url);
+           // var userProfile = await GoogleAuth.GetProfileResponseAsync(token.AccessToken);
+        
+            
+       
+            return View();
+        }
+    }
+}
